@@ -10,8 +10,9 @@ export default function Home() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        loadData();
-    }, []);
+            loadData();
+    }, [])
+    
 
     const loadData = async () => {
         try {
@@ -23,7 +24,7 @@ export default function Home() {
     };
 
     return (
-        <View>
+        <View style={styles.container}>
             <Text style={styles.heading}>View Student</Text>
             <ScrollView style={styles.scrollView}>
                 {
@@ -42,18 +43,22 @@ export default function Home() {
     )
 }
 
-
 const styles = StyleSheet.create({
 
     heading: {
+        justifyContent: 'center',
         fontSize: 18,
         fontWeight: "bold",
         marginBottom: 8,
     },
 
     scrollView: {
-        backgroundColor: 'white',
+        backgroundColor: '#006400',
         marginBottom: 20,
     },
+
+    container: {
+        backgroundColor: '#2f4f4f',
+    }
 });
 

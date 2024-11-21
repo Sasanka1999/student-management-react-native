@@ -17,3 +17,11 @@ export const getData = async () => {
     } 
     return val;
 }
+
+export const removeData = async () => {
+    try{
+        await AsyncStorage.removeItem('my-Token');
+    }catch (e) {
+        
+    }
+}

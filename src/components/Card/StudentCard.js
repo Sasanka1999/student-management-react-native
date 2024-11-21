@@ -1,29 +1,23 @@
-import { View, StyleSheet } from "react-native";
-import { Card, Paragraph, Title, Button } from "react-native-paper";
-import Swipeable from "react-native-gesture-handler/Swipeable";
+import React, { useRef } from "react";
+import { StyleSheet, Dimensions, View, Text } from "react-native";
+import { Swipeable } from "react-native-gesture-handler";
+import { Card, Paragraph, Title } from "react-native-paper";
 
-export default function StudentCard({ name, age, address, contact, onUpdate, onDelete }) {
-    const renderRightActions = () => (
-        <View style={styles.actionButtons}>
-            <Button
-                mode="contained"
-                onPress={onUpdate}
-                style={[styles.actionButton, styles.updateButton]}
-            >
-                Update
-            </Button>
-            <Button
-                mode="contained"
-                onPress={onDelete}
-                style={[styles.actionButton, styles.deleteButton]}
-            >
-                Delete
-            </Button>
+export default function StudentCard({ id, name, age, address, contact, onDelete, onUpdate }) {
+
+    const swipeableRef = useRef(null);
+
+    const renderLeftActions = ()=> (
+        <View>
+            <Text></Text>
         </View>
     );
 
     return (
-        <Swipeable renderRightActions={renderRightActions}>
+        <Swipeable
+            ref={swipeableRef}
+            renderLeftActions={renderLeftActions}
+        >
             <Card style={styles.card}>
                 <Card.Content>
                     <Title style={styles.title}>Name: {name}</Title>
@@ -33,45 +27,54 @@ export default function StudentCard({ name, age, address, contact, onUpdate, onD
                 </Card.Content>
             </Card>
         </Swipeable>
+
     );
 }
 
+const { width } = Dimensions.get("window");
+
 const styles = StyleSheet.create({
     card: {
-        width: 345,
-        borderRadius: 8,
-        backgroundColor: "#f5f5f5",
+        width: width - 20, // Ensuring card width fits inside swipeable area
+        borderRadius: 12,
+        backgroundColor: "#3cb371",
         shadowColor: "#000",
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
-        shadowRadius: 3,
-        elevation: 4,
-        margin: 5,
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 6,
+        elevation: 6,
+        margin: 10,
+        padding: 10, // Adjust padding to ensure better swipe interaction
+        alignSelf: "center",
     },
     title: {
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: "bold",
-        color: "#3f51b5",
-        marginBottom: 8,
+        color: "#6200ea",
+        marginBottom: 10,
     },
     text: {
+        fontSize: 18,
+        color: "#444",
+        marginBottom: 6,
+    },
+    leftAction: {
+        backgroundColor: "#ff3b30", // Background color for delete action
+        justifyContent: "center",
+        alignItems: "flex-start",
+        paddingHorizontal: 20,
+        height: "100%",
+    },
+    rightAction: {
+        backgroundColor: "#007aff", // Background color for update action
+        justifyContent: "center",
+        alignItems: "flex-end",
+        paddingHorizontal: 20,
+        height: "100%",
+    },
+    actionText: {
+        color: "#fff",
+        fontWeight: "bold",
         fontSize: 16,
-        color: "#666",
-        marginBottom: 4,
-    },
-    actionButtons: {
-        flexDirection: "row",
-        alignItems: "center",
-        marginVertical: 10,
-    },
-    actionButton: {
-        flex: 1,
-        marginHorizontal: 5,
-    },
-    updateButton: {
-        backgroundColor: "#4caf50",
-    },
-    deleteButton: {
-        backgroundColor: "#f44336",
     },
 });
