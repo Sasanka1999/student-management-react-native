@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../Home/Home';
 import AddStudent from '../AddStudent/AddStudent';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
+import Profile from '../Profile/Profile';
 const Tab = createBottomTabNavigator();
 
 export default function BottomNav() {
@@ -31,7 +31,16 @@ export default function BottomNav() {
                 component={AddStudent}
                 options={{
                     tabBarIcon: ({ color, size }) => (
-                        <Icon name="add" color={color} size={size} />
+                        <Icon name="person-add" color={color} size={size} />
+                    ),
+                }} 
+            />
+            <Tab.Screen 
+                name="Profile" 
+                component={Profile}
+                options={{
+                    tabBarIcon: ({ color, size }) => (
+                        <Icon name="person" color={color} size={size} />
                     ),
                 }} 
             />

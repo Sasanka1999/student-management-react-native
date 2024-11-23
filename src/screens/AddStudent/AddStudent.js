@@ -1,4 +1,4 @@
-import { View, TextInput, StyleSheet, Text, KeyboardAvoidingView, Button, TouchableWithoutFeedback, Keyboard, TouchableOpacity, Alert } from "react-native";
+import { View, TextInput, StyleSheet, Text, KeyboardAvoidingView, Button, TouchableWithoutFeedback, Keyboard, TouchableOpacity } from "react-native";
 import { useState } from "react";
 import instance from "../../service/axiosOrder";
 import { Card } from "react-native-paper";
@@ -29,7 +29,7 @@ export default function AddStudent() {
                 console.error('Error saving student:', error);
             }
         } else {
-            Alert.alert("Kindly ensure all fields are completed.");
+            console.log("Please fill all the fields");
         }
     };
 
@@ -46,7 +46,6 @@ export default function AddStudent() {
                         placeholder="Enter Student Name"
                         value={name}
                         onChangeText={(val) => setName(val)}
-                        
                     />
                     <TextInput
                         style={styles.input}

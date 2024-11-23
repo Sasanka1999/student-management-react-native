@@ -1,33 +1,18 @@
 import React, { useRef } from "react";
-import { StyleSheet, Dimensions, View, Text } from "react-native";
-import { Swipeable } from "react-native-gesture-handler";
+import { StyleSheet, Dimensions, View, Text, Alert } from "react-native";
 import { Card, Paragraph, Title } from "react-native-paper";
 
 export default function StudentCard({ id, name, age, address, contact, onDelete, onUpdate }) {
 
-    const swipeableRef = useRef(null);
-
-    const renderLeftActions = ()=> (
-        <View>
-            <Text></Text>
-        </View>
-    );
-
     return (
-        <Swipeable
-            ref={swipeableRef}
-            renderLeftActions={renderLeftActions}
-        >
-            <Card style={styles.card}>
-                <Card.Content>
-                    <Title style={styles.title}>Name: {name}</Title>
-                    <Paragraph style={styles.text}>Age: {age}</Paragraph>
-                    <Paragraph style={styles.text}>Contact: {contact}</Paragraph>
-                    <Paragraph style={styles.text}>Address: {address}</Paragraph>
-                </Card.Content>
-            </Card>
-        </Swipeable>
-
+        <Card style={styles.card}>
+            <Card.Content>
+                <Title style={styles.title}>Name: {name}</Title>
+                <Paragraph style={styles.text}>Age: {age}</Paragraph>
+                <Paragraph style={styles.text}>Contact: {contact}</Paragraph>
+                <Paragraph style={styles.text}>Address: {address}</Paragraph>
+            </Card.Content>
+        </Card>
     );
 }
 
@@ -35,7 +20,7 @@ const { width } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
     card: {
-        width: width - 20, // Ensuring card width fits inside swipeable area
+        width: width - 20,
         borderRadius: 12,
         backgroundColor: "#3cb371",
         shadowColor: "#000",
@@ -44,7 +29,7 @@ const styles = StyleSheet.create({
         shadowRadius: 6,
         elevation: 6,
         margin: 10,
-        padding: 10, // Adjust padding to ensure better swipe interaction
+        padding: 10,
         alignSelf: "center",
     },
     title: {
@@ -59,14 +44,14 @@ const styles = StyleSheet.create({
         marginBottom: 6,
     },
     leftAction: {
-        backgroundColor: "#ff3b30", // Background color for delete action
+        backgroundColor: "#ff3b30",
         justifyContent: "center",
         alignItems: "flex-start",
         paddingHorizontal: 20,
         height: "100%",
     },
     rightAction: {
-        backgroundColor: "#007aff", // Background color for update action
+        backgroundColor: "#007aff",
         justifyContent: "center",
         alignItems: "flex-end",
         paddingHorizontal: 20,
