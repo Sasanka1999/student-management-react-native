@@ -18,8 +18,13 @@ export default function Login() {
             email: email,
             password: password,
           });
+
+          const userData = {
+            token: response.data.token,
+            email: email,
+          };
     
-          await saveData(response.data.token)
+          await saveData(userData)
     
           Navigate.navigate("BottomNav");
         } catch (error) {
@@ -51,9 +56,6 @@ export default function Login() {
                     </View>
                     <View style={styles.btnContainer}>
                         <Button title="Register" onPress={() => Navigate.navigate('Register')} />
-                    </View>
-                    <View style={styles.btnContainer}>
-                        <Button title="BottomNav" onPress={() => Navigate.navigate('BottomNav')} />
                     </View>
                 </View>
             </TouchableWithoutFeedback>

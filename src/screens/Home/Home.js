@@ -12,7 +12,7 @@ import {
 import { SwipeListView } from "react-native-swipe-list-view";
 import instance from "../../service/axiosOrder";
 
-export default function Home(name) {
+export default function Home() {
     const [data, setData] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedStudent, setSelectedStudent] = useState(null);
